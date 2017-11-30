@@ -70,19 +70,19 @@
 			/*start device search*/
 			
 			patientApi.fetchAll({type:'Device',query:{status:'active'}}).then(function(response) {
-				document.getElementById("deviceDiv").innerText = JSON.stringify(response);
-				return;
-				var retString = "<table class='dataTable'>";
+				/*document.getElementById("deviceDiv").innerText = JSON.stringify(response);*/
+				//return;
+				var retStringDevices = "<table class='dataTable'>";
 				
-				response.forEach(function(allObj,idx){
-					retString +=
+				response.forEach(function(allDevices,idx){
+					retStringDevices +=
 						"<tr>"+
-							"<td>"+allObj.substance.text+"</td>"+
-							"<td>"+allObj.status+"</td>"+
+							"<td>"+allDevices.model.text+"</td>"+
+							"<td>"+allDevices.manufactureDate.text+"</td>"+
 						"</tr>";
 				});
-				retString += "</table>";
-				document.getElementById("deviceDiv").innerHTML = retString;
+				retStringDevices += "</table>";
+				document.getElementById("deviceDiv").innerHTML = retStringDevices;
 			});
 			/*end device search*/
 			
