@@ -69,7 +69,7 @@
 			});
 			/*start device search*/
 			
-			patientApi.fetchAll({type:'Device',query:{status:'active'}}).then(function(response) {
+			patientApi.fetchAll({type:'Device'}).then(function(response) {
 				/*document.getElementById("deviceDiv").innerText = JSON.stringify(response);*/
 				//return;
 				var retStringDevices = "<table class='dataTable'>";
