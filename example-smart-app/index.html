@@ -67,8 +67,8 @@
 				retString += "</table>";
 				document.getElementById("allergyDiv").innerHTML = retString;
 			});
-			/*start device search*/
 			
+			/*start device search*/
 			patientApi.fetchAll({type:'Device'}).then(function(response) {
 				/*document.getElementById("deviceDiv").innerText = JSON.stringify(response);*/
 				//return;
@@ -77,8 +77,8 @@
 				response.forEach(function(allDevices,idx){
 					retStringDevices +=
 						"<tr>"+
-							"<td>"+allDevices.model.text+"</td>"+
-							"<td>"+allDevices.manufactureDate.text+"</td>"+
+							"<td>"+allDevices.model+"</td>"+
+							"<td>"+allDevices.manufactureDate+"</td>"+
 						"</tr>";
 				});
 				retStringDevices += "</table>";
