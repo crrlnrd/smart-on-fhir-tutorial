@@ -29,6 +29,7 @@
 <body>
 	<div id="medStatementDiv" class="dataDiv">Loading meds...</div>
 	<div id="allergyDiv" class="dataDiv">Loading allergies...</div>
+	<div id="deviceDiv" class="dataDiv">Loading devices...</div>
 	<div id="obvDiv" class="dataDiv">Loading observations...</div>
 </body>
 <!-- Required JS files to enable this page to embed within an MPage -->
@@ -66,6 +67,25 @@
 				retString += "</table>";
 				document.getElementById("allergyDiv").innerHTML = retString;
 			});
+			/*start device search*/
+			
+			patientApi.fetchAll({type:'Device',query:{status:'active'}}).then(function(response) {
+				document.getElementById("deviceDiv").innerText = JSON.stringify(response);
+				return;
+				var retString = "<table class='dataTable'>";
+				
+				response.forEach(function(allObj,idx){
+					retString +=
+						"<tr>"+
+							"<td>"+allObj.substance.text+"</td>"+
+							"<td>"+allObj.status+"</td>"+
+						"</tr>";
+				});
+				retString += "</table>";
+				document.getElementById("deviceDiv").innerHTML = retString;
+			});
+			/*end device search*/
+			
 			var lookbackDate = new Date();
 			lookbackDate.setMonth(lookbackDate.getMonth()-6);
 			var month = (lookbackDate.getMonth()+1 < 10)?"0"+(lookbackDate.getMonth()+1):lookbackDate.getMonth()+1;
@@ -107,6 +127,9 @@
 			document.body.innerText = "Launch first.";
 		}
 	}
+	
+	
+	
 	FHIR.oauth2.ready(ready, notReady);
 </script>
 </html>
